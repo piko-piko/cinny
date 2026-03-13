@@ -3,6 +3,9 @@ import { IPreviewUrlResponse } from 'matrix-js-sdk';
 import { Box, Icon, IconButton, Icons, Scroll, Spinner, Text, as, color, config } from 'folds';
 import { AsyncStatus, useAsyncCallback } from '../../hooks/useAsyncCallback';
 import { useMatrixClient } from '../../hooks/useMatrixClient';
+import { useSetting } from '../../state/hooks/settings';
+import { settingsAtom } from '../../state/settings';
+
 import { UrlPreview, UrlPreviewContent, UrlPreviewDescription, UrlPreviewImg } from './UrlPreview';
 import {
   getIntersectionObserverEntry,
@@ -19,6 +22,7 @@ export const UrlPreviewCard = as<'div', { url: string; ts: number }>(
   ({ url, ts, ...props }, ref) => {
     const mx = useMatrixClient();
     const useAuthentication = useMediaAuthentication();
+    const [bigUrlPreview] = useSetting(settingsAtom, 'bigUrlPreview');
     const [previewStatus, loadPreview] = useAsyncCallback(
       useCallback(() => mx.getUrlPreview(url, ts), [url, ts, mx])
     );
@@ -39,10 +43,15 @@ export const UrlPreviewCard = as<'div', { url: string; ts: number }>(
         'scale',
         false
       );
-
+      const direction = bigUrlPreview ? "Column" : "Row"; 
       return (
-        <>
-          {imgUrl && <UrlPreviewImg mxcUrl={prev['og:image']} src={imgUrl} alt={prev['og:title']} title={prev['og:title']} />}
+        <Box direction={direction} grow="Yes" style={{height:'100%'}}>
+          {imgUrl && <UrlPreviewImg 
+            bigUrlPreview={bigUrlPreview} 
+            mxcUrl={prev['og:image']}
+            src={imgUrl}
+            alt={prev['og:title']}
+            title={prev['og:title']} />}
           <UrlPreviewContent>
             <Text
               style={linkStyles}
@@ -64,7 +73,7 @@ export const UrlPreviewCard = as<'div', { url: string; ts: number }>(
               <UrlPreviewDescription>{prev['og:description']}</UrlPreviewDescription>
             </Text>
           </UrlPreviewContent>
-        </>
+        </Box>
       );
     };
 
