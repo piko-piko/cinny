@@ -31,6 +31,8 @@ export interface Settings {
   mediaAutoLoad: boolean;
   urlPreview: boolean;
   encUrlPreview: boolean;
+  bigUrlPreview: boolean;
+  coverUrlPreview: boolean;
   showHiddenEvents: boolean;
   legacyUsernameColor: boolean;
 
@@ -65,6 +67,8 @@ const defaultSettings: Settings = {
   mediaAutoLoad: true,
   urlPreview: true,
   encUrlPreview: false,
+	bigUrlPreview: false,
+	coverUrlPreview: false,
   showHiddenEvents: false,
   legacyUsernameColor: false,
 
