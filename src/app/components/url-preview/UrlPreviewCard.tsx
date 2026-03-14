@@ -112,11 +112,7 @@ export const UrlPreviewCard = as<'div', { url: string; ts: number }>(
               size="T200"
               priority="300"
             >
-              {typeof prev['og:site_name'] === 'string' && `${prev['og:site_name']} | `}
-              {tryDecodeURIComponent(url)}
-            </Text>
-            <Text truncate priority="400">
-              <b>{prev['og:title']}</b>
+              {prev['og:title']}
             </Text>
             <Text size="T200" priority="300">
               <UrlPreviewDescription>{prev['og:description']}</UrlPreviewDescription>
