@@ -18,46 +18,16 @@ export const UrlPreviewImg = as<'img', {
   const [coverUrlPreview] = useSetting(settingsAtom, 'coverUrlPreview');
   const objectFit = coverUrlPreview ? 'cover' : 'contain';
 	const bigUrlPreviewProps: Partial<React.ComponentProps<typeof Box>> | undefined = bigUrlPreview 
-		? {
-		style: {
-    width: '100%',
-    height: '100%',
-		maxHeight: '300px',
-    objectFit,
-    objectPosition: 'center',
-    justifyContent: 'center',
-	}} : undefined; 
+		? {	style: { 
+			width: '100%',
+			height: '100%',
+      maxHeight: '300px',
+			objectFit,
+      objectPosition: 'center',
+      justifyContent: 'center',
+		}} : undefined; 
 
-  const handleAuxClick = (ev: React.MouseEvent) => {
-    if (ev.button === 1) {
-      ev.preventDefault();
-      openMediaInNewTab();
-    }
-  };
-  const openMediaInNewTab = async () => {
-    try {
-      const useAuthentication = true;
-      const httpUrl = mxcUrlToHttp(mx, mxcUrl, useAuthentication);
-      if (httpUrl) {
-        const res = await fetch(httpUrl, {
-           headers: {
-             Authorization: `Bearer ${mx.getAccessToken()}`,
-             },
-         });
-         if (!res.ok) {
-           console.error("Failed to fetch media", res.status);
-           return;
-         }
-         const blob = await res.blob();
-         const blobUrl = URL.createObjectURL(blob);
-         window.open(blobUrl, "_blank");
-      }
-      else (console.error("Error parsing mxc:// url", mxcUrl));
-    } catch (err) {
-      console.error("Error opening media", err);
-    }
-  };
-  return (<img {...bigUrlPreviewProps}className={classNames(css.UrlPreviewImg, className)} alt={alt} {...props} ref={ref}  onAuxClick={handleAuxClick}/>
+  return (<img {...bigUrlPreviewProps} className={classNames(css.UrlPreviewImg, className)} alt={alt} {...props} ref={ref}/>
 )
 });
 
