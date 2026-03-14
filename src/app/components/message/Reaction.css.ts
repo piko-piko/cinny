@@ -8,7 +8,6 @@ const ContainerLine = createVar();
 const OnContainer = createVar();
 
 export const Reaction = style([
-  FocusOutline,
   {
     vars: {
       [Container]: color.SurfaceVariant.Container,
@@ -18,9 +17,6 @@ export const Reaction = style([
       [OnContainer]: color.SurfaceVariant.OnContainer,
     },
     padding: `${toRem(2)} ${config.space.S200} ${toRem(2)} ${config.space.S100}`,
-    backgroundColor: Container,
-    border: `${config.borderWidth.B300} solid ${ContainerLine}`,
-    borderRadius: config.radii.R300,
 
     selectors: {
       'button&': {
@@ -34,7 +30,6 @@ export const Reaction = style([
           [ContainerLine]: color.Primary.ContainerLine,
           [OnContainer]: color.Primary.OnContainer,
         },
-        backgroundColor: Container,
       },
       '&[aria-selected=true]': {
         borderColor: color.Secondary.Main,
@@ -67,7 +62,7 @@ export const ReactionText = style([
 export const ReactionImg = style([
   DefaultReset,
   {
-    height: '1em',
+    height: '2em',
     minWidth: 0,
     maxWidth: toRem(150),
     objectFit: 'contain',
