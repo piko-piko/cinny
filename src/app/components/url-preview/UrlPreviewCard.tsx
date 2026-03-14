@@ -13,7 +13,6 @@ import {
   useIntersectionObserver,
 } from '../../hooks/useIntersectionObserver';
 import * as css from './UrlPreviewCard.css';
-import { tryDecodeURIComponent } from '../../utils/dom';
 import { mxcUrlToHttp, downloadMedia } from '../../utils/matrix';
 import { useMediaAuthentication } from '../../hooks/useMediaAuthentication';
 import { ImageViewer } from '../image-viewer';
