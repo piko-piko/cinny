@@ -55,14 +55,15 @@ export const ReactionText = style([
     maxWidth: toRem(150),
     display: 'inline-flex',
     alignItems: 'center',
-    lineHeight: toRem(20),
+    lineHeight: toRem(35),
+    fontSize:toRem(20),
   },
 ]);
 
 export const ReactionImg = style([
   DefaultReset,
   {
-    height: '2em',
+    height: toRem(35),
     minWidth: 0,
     maxWidth: toRem(150),
     objectFit: 'contain',

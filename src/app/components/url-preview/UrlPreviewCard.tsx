@@ -108,7 +108,7 @@ export const UrlPreviewCard = as<'div', { url: string; ts: number }>(
               href={url}
               target="_blank"
               rel="noreferrer"
-              size="T200"
+              size="T400"
               priority="300"
             >
               {prev['og:title']}
