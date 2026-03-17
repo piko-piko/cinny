@@ -9,7 +9,7 @@ export const Attachment = recipe({
     borderRadius: config.radii.R400,
     overflow: 'hidden',
     maxWidth: '100%',
-    width: toRem(400),
+//    width: toRem(400),
   },
   variants: {
     outlined: {
@@ -31,7 +31,7 @@ export const AttachmentBox = style([
   {
     maxWidth: '100%',
     maxHeight: toRem(600),
-    width: toRem(400),
+//    width: toRem(400),
     overflow: 'hidden',
   },
 ]);
