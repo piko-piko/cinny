@@ -86,19 +86,6 @@ export const scaleYDimension = (x: number, scaledX: number, y: number): number =
   return scaleFactor * y;
 };
 
-export const scaleDimension = (
-  w: number,
-  h: number,
-  maxW: number = 300,
-  maxH: number = 300
-): { width: number; height: number } => {
-  const scale = Math.min(maxW / w, maxH / h);
-  return {
-    width: Math.round(w * scale),
-    height: Math.round(h * scale)
-  };
-}
-
 export const parseGeoUri = (location: string) => {
   try {
     const [, data] = location.split(':');

@@ -26,7 +26,7 @@ import {
   MATRIX_SPOILER_REASON_PROPERTY_NAME,
 } from '../../../types/matrix/common';
 import { FALLBACK_MIMETYPE, getBlobSafeMimeType } from '../../utils/mimeTypes';
-import { parseGeoUri, scaleYDimension, scaleDimension } from '../../utils/common';
+import { parseGeoUri, scaleYDimension } from '../../utils/common';
 import { Attachment, AttachmentBox, AttachmentContent, AttachmentHeader } from './attachment';
 import { FileHeader, FileDownloadButton } from './FileHeader';
 
@@ -195,14 +195,13 @@ export function MImage({ content, renderImageContent, outlined }: MImageProps) {
   if (typeof mxcUrl !== 'string') {
     return <BrokenContent />;
   }
-  const d = scaleDimension(imgInfo?.w, imgInfo?.h);
+  const height = scaleYDimension(imgInfo?.w || 400, 400, imgInfo?.h || 400);
 
   return (
     <Attachment outlined={outlined}>
       <AttachmentBox
         style={{
-          height: toRem(d.height < 48 ? 48 : d.height),
-          width: toRem(d.width < 48 ? 48 : d.width),
+          height: toRem(height < 48 ? 48 : height),
         }}
       >
         {renderImageContent({
